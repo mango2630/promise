@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container">
+        <button>点击进行请求</button>
+    </div>
+    <script>
+        // https://api.apiopen.top/getJok
+        var oBut = document.querySelector("button");
+        oBut.addEventListener("click", function() {
+            const p = new Promise((resolve, reject) => {
+                // 创建对象
+                const xhr = new XMLHttpRequest();
+                // 初始化
+                xhr.open('GET', 'https://api.apiopen.top/getJok');
+                // 发送
+                xhr.send();
+                // 处理响应结果
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status >= 200 && xhr.status < 300) {
+                            // 输出响应体
+                            // console.log(xhr.response);
+                            resolve()
+                        } else {
+                            // console.log(xhr.status);
+                            reject()
+                        }
+                    }
+                }
+            })
+
+            p.then(() => {
+                console.log('成功');
+            }, () => {
+                console.log('失败');
+            })
+        })
+
+
+
+    </script>
+</body>
+</html>

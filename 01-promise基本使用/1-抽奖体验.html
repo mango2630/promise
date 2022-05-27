@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="container">
+        <button>点击抽奖</button>
+    </div>
+    <script>
+        var oBut = document.querySelector("button");
+        function rand(m, n) {
+            // Math.ceil() 向上取整
+            return Math.ceil(Math.random() * (n - m + 1)) + m - 1;
+        }
+
+        oBut.addEventListener("click", function() {
+
+            /* setTimeout(() => {
+                let n = rand(1, 100);
+                if (n <= 30) {
+                    alert("恭喜你，中奖了");
+                } else {
+                    alert("没中奖！");
+                }
+            }, 1000) */
+
+
+            /* 
+                Promise 实现
+                resolve 解决 函数类型数据
+                reject 拒绝 函数类型数据
+            */
+            const p = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    let n = rand(1, 100);
+                    if (n <= 30) {
+                        resolve(); // 将 promise 对象的状态设置为成功
+                    } else {
+                        reject(); // 将 promise 对象的状态设置为失败
+                    }
+                }, 1000)
+            })
+            console.log(p);
+            p.then(() => {
+                alert("恭喜你，中奖了");
+            }, () => {
+                alert("没中奖！");
+            })
+
+        })
+
+
+
+    </script>
+</body>
+</html>
